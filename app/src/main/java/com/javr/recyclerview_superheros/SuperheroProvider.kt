@@ -70,12 +70,6 @@ class SuperheroProvider {
                 "https://www.akiracomics.com/imagenes/poridentidad?identidad=23bee68b-e5bb-40ad-bdde-8cbaf364ea3a&ancho=850&alto="
             ),
             Superhero(
-                "Linterna Verde",
-                "DC",
-                "Hal Jordan",
-                "https://www.geekmi.news/__export/1610132435189/sites/debate/img/2021/01/08/781ebd80d6a97bb1cf7f67132b305eef.jpg_1051405756.jpg"
-            ),
-            Superhero(
                 "Capitan America",
                 "Jetbrains",
                 "Steve Rogers",
