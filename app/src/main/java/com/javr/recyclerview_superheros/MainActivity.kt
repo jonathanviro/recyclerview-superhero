@@ -5,17 +5,21 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.javr.recyclerview_superheros.adapter.SuperheroAdapter
+import com.javr.recyclerview_superheros.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initRecyclerView()
     }
 
     fun initRecyclerView(){
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerSuperhero)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = SuperheroAdapter(SuperheroProvider.listSuperhero)
+        binding.recyclerSuperhero.layoutManager = LinearLayoutManager(this)
+        binding.recyclerSuperhero.adapter = SuperheroAdapter(SuperheroProvider.listSuperhero)
     }
+
+
 }

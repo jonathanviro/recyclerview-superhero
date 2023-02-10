@@ -1,24 +1,36 @@
 package com.javr.recyclerview_superheros.adapter
 
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.javr.recyclerview_superheros.R
 import com.javr.recyclerview_superheros.Superhero
+import com.javr.recyclerview_superheros.databinding.ItemSuperheroBinding
 
-class SuperheroViewHolder(view: View): RecyclerView.ViewHolder(view){
+class SuperheroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    val binding = ItemSuperheroBinding.bind(view)
+    fun render(superHeroModel: Superhero) {
+        binding.tvName.text = superHeroModel.name
+        binding.tvRealname.text = superHeroModel.realName
+        binding.tvPublisher.text = superHeroModel.publisher
+        Glide.with(binding.ivPhoto.context).load(superHeroModel.photo).into(binding.ivPhoto)
 
-    val name = view.findViewById<TextView>(R.id.tvName)
-    val realName = view.findViewById<TextView>(R.id.tvRealname)
-    val publisher = view.findViewById<TextView>(R.id.tvPublisher)
-    val photo = view.findViewById<ImageView>(R.id.ivPhoto)
+        //Clic solo en la imagene
+        binding.ivPhoto.setOnClickListener {
+            Toast.makeText(
+                binding.ivPhoto.context,
+                superHeroModel.realName,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
-    fun render(superHeroModel: Superhero){
-        name.text = superHeroModel.name
-        realName.text = superHeroModel.name
-        publisher.text = superHeroModel.publisher
-        Glide.with(photo.context).load(superHeroModel.photo).into(photo)
+        //Clic en cualquier parte del item
+        itemView.setOnClickListener {
+            Toast.makeText(
+                binding.ivPhoto.context,
+                superHeroModel.name,
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }
