@@ -9,28 +9,15 @@ import com.javr.recyclerview_superheros.databinding.ItemSuperheroBinding
 
 class SuperheroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val binding = ItemSuperheroBinding.bind(view)
-    fun render(superHeroModel: Superhero) {
+    fun render(superHeroModel: Superhero, funOnClickListener: (Superhero) -> Unit) {
         binding.tvName.text = superHeroModel.name
         binding.tvRealname.text = superHeroModel.realName
         binding.tvPublisher.text = superHeroModel.publisher
         Glide.with(binding.ivPhoto.context).load(superHeroModel.photo).into(binding.ivPhoto)
 
-        //Clic solo en la imagene
-        binding.ivPhoto.setOnClickListener {
-            Toast.makeText(
-                binding.ivPhoto.context,
-                superHeroModel.realName,
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-
         //Clic en cualquier parte del item
         itemView.setOnClickListener {
-            Toast.makeText(
-                binding.ivPhoto.context,
-                superHeroModel.name,
-                Toast.LENGTH_SHORT
-            ).show()
+            funOnClickListener(superHeroModel)
         }
     }
 }
